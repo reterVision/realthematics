@@ -1,0 +1,20 @@
+- if flash[:alert]
+	%p{:id => "notice"}
+		= flash[:alert]
+= form_tag find_topics_url, :method => "get" do
+	%div{:class => "well span10", :id => "search_topics"}
+		= text_field_tag :keyword, params[:keyword], :class => "span8", :style => "margin: 0 2%; height: 30px", "placeholder" => "Search topics ...", :id => "real_search_field"
+		&nbsp &nbsp 
+		%button{:class => "btn btn-large btn-primary", :onclick => "return checkKeyword();"}
+			Search
+
+%script{:type => "text/javascript"}
+	:plain
+		function checkKeyword(){
+			var v = document.getElementById ("real_search_field");
+			if (v.value=="") {
+				return false;
+			}else{
+				return true;
+			}
+		}

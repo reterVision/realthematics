@@ -1,0 +1,16 @@
+#container, #container_link, #container_video, #container_book  {
+  display: table;
+}
+
+#row, #row_link, #row_video, #row_book  {
+  display: table-row;
+}
+
+#left, #right, #middle, #left_link, #right_link, #middle_Zxlink,
+#left_video, #right_video, #middle_video, #left_book, #right_book, #middle_book{
+  display: table-cell;
+}
+.pagination {
+  width: 540px;
+  margin-left: 20px;
+}

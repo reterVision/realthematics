@@ -1,0 +1,12 @@
+%hr
+%div{:class => "row-fluid", :id => "my_topics"}
+	%h3= link_to my_topics_list.topicTitle, topic_path(:id => my_topics_list.topic_id)
+	%p
+		= button_to 'remove from my list', my_topics_list, :method => :delete, :class => "btn btn-mini btn-warning"		
+	
+		%a{:href => "#{score_path(:user_action => 2, :topic_id => my_topics_list.topic_id, :user_id => session[:user_id])}"}
+			%i.icon-arrow-up
+		="#{my_topics_list.up_count}"
+		%a{:href => "#{score_path(:user_action => 3, :topic_id => my_topics_list.topic_id, :user_id => session[:user_id])}"}
+			%i.icon-arrow-down
+		="#{my_topics_list.down_count}"		

@@ -1,0 +1,36 @@
+%div.container-fluid
+  %div.span6
+    - if flash[:alert]
+      %p{:id => "notice", :class => "span5 alert alert-error"}
+        = flash[:alert]
+        %a{:class => "close", "data-dismiss" => "alert"}
+          ×
+    = form_tag do
+      #span6
+        %fieldset
+          %legend Sign in to Real Thematics
+          %br
+          #email_div
+            %label{ :for=>"email"} Email:
+            =text_field_tag :email,params[:email]
+            %span.help-inline.hidden Please input your email and click the link again.
+          %div
+            %label{:for=>"password"}Password:
+            = password_field_tag :password, params[:password]
+          %div
+            =link_to 'Forgot your password?',"/reset", :id=>'forgot_pass_link'
+          %br
+          %div
+            = submit_tag "Login", :class=>'btn btn-large btn-primary'
+
+%script{:type => "text/javascript"}
+  :plain
+    $("#forgot_pass_link").click(function(event){
+      var value = $("#email").val();
+      if(value.length==0){
+        $("#email_div").addClass("control-group error");
+        $(".help-inline").removeClass("hidden");
+        event.preventDefault();
+      }else{
+        $(this).attr("href","/reset?email="+value);
+      }});

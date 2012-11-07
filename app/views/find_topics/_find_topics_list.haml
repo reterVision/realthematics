@@ -1,0 +1,21 @@
+%hr
+.row-fluid#new_feeds
+	%h3 
+		= link_to find_topics_list.title, find_topics_list
+	%p	
+		= find_topics_list.description
+	- if @_controller.is_topic_in_my_list?(find_topics_list)
+		%i I already added this.
+	-else
+		= button_to 'Add to my topics', topics_users_path(:topic_id => find_topics_list.id, :user_id => session[:user_id]), :class => "btn btn-mini btn-success"
+	%a{:href => "#{score_path(:user_action => 2, :topic_id => find_topics_list.id, :user_id => session[:user_id])}"}
+		%i.icon-arrow-up
+	="#{find_topics_list.up_count}"
+
+	%a{:href => "#{score_path(:user_action => 3, :topic_id => find_topics_list.id, :user_id => session[:user_id])}"}
+		%i.icon-arrow-down
+	="#{find_topics_list.down_count}"
+
+
+
+	

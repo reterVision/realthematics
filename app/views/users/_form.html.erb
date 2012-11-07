@@ -1,0 +1,36 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <ul class="span6">
+        <% @user.errors.full_messages.each do |msg| %>
+        <p>
+					<li class="span5 alert alert-error"><%= msg %>
+						<a class="close" data-dismiss="alert">x</a>
+					</li>
+				</p>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <br/>
+    <div class="span6 well">
+        <fieldset>
+        <legend>Please enter your information below: </legend>
+          <br/>
+          <div class="span5 field">
+            <%= f.label :email %>
+            <%= f.text_field :email %>
+          </div>
+          <br />
+          <div class="span5 field">
+            <%= f.label :password, 'Password' %>
+            <%= f.password_field :password %>
+          </div>
+          </p>
+					<br/>
+          <div class="span6 actions">
+            <%= f.submit :value=>'Register', :class=>'btn btn-large btn-primary' %>
+          </div>
+        </fieldset>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+%h2
+  Find topics that interest you
+%ul
+  - @topics.each do |topic|
+  %li= link_to topic.title, topic
+%br
+
+= link_to 'New Topic', new_topic_path

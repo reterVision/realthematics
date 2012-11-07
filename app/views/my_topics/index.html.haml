@@ -1,0 +1,24 @@
+%link{:rel => "stylesheet", :href => "/stylesheets/pagination.css"}
+:css
+	.button_to div {display: inline;}
+	.button_to {display: inline;}
+%div{:class => "span10", :id => "search_results"}
+	%h2
+		%b
+			My Topics
+	- if notice
+		%p{:id => "notice", :class => "span5 alert alert-error"}
+			= notice
+			%a{:class => "close", "data-dismiss" => "alert"}
+				x
+	- if @myTopics.empty?
+		%div{:class => "alert alert-error"}
+			Sorry, but you haven't added any topics yet.
+		%button{:class => "btn btn-primary btn-largge", :onclick => "window.location.href='/findtopics'"}
+			Find Topics
+	- else
+		= render(:partial => "my_topics_list", :collection => @myTopics)
+		%hr
+		%div{:class => "span3"}
+			%div{:class => "flickr_pagination"}
+				= will_paginate(@myTopics, :container => false)

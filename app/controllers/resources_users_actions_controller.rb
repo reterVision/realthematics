@@ -1,0 +1,2 @@
+class ResourceScoreUsersController < ApplicationController
+end

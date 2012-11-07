@@ -1,0 +1,18 @@
+-# Web Tour for Find Topics
+%ol#joyRideTipContent
+	%li(data-id="search_topics")
+		%h2 Welcome on board!
+		%p RealThematics let you follow topics and share resources to others who need them.
+		%p Type in the topic you're interested in and click Search.
+	%li(data-id="search_results" data-options="tipAnimation:fade" data-text="Done" ) 
+		%p Got the result you want? Click the "Add to my Topics" to follow it. If no, click the Add to Realthematics to add it in.
+%script{:type => "text/javascript"}
+	:plain
+		$(window).load(function() {
+			$(this).joyride({
+				'cookieMonster': true,           // true/false for whether cookies are used
+				'cookieName': 'RealJoyRide',         // choose your own cookie name
+				'cookieDomain': false          // set to false or yoursite.com
+				}
+			);
+		});

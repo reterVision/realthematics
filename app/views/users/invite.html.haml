@@ -1,0 +1,12 @@
+.well.span12
+	%center
+		%h1 Welcome to Real Thematics!
+- if @user
+	= render 'updateform'
+- else
+	.span12
+		%center
+			%h2 You have registered or not in the open list yet.
+			%p If this is the first time you visit here, join the waiting list and we'll open the account for you once we're ready.
+			%p
+				%a{:href=>"http://signup.realthematics.com"} Join waiting list

@@ -1,0 +1,26 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+.sidebar-nav {
+    padding: 9px 0;
+}
+
+#toplink {
+	height: 56px;
+	width: 58px;
+	position: fixed;
+	bottom: 113px;
+	left: 80%;
+	background: #F0F0F0;
+	display: none;
+	border-radius: 3px;
+}
+
+#toplink img {
+	margin: 28% 30%;
+	width: 24px;
+	height: 27px;
+}
+
+

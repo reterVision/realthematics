@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  resource_id: 1
+  add_count: 1
+  up_count: 1
+  down_count: 1
+
+two:
+  resource_id: 1
+  add_count: 1
+  up_count: 1
+  down_count: 1

@@ -1,0 +1,41 @@
+%link{:rel => "stylesheet", :href => "/stylesheets/topics.css"}
+%link{:rel => "stylesheet", :href => "/stylesheets/pagination.css"}
+.notice_alert
+  - if notice
+    %p{:id=>"notice", :class=>"span5 alert alert-success"}
+      = notice
+      %a{:class=>"close", "data-dismiss"=>"alert"}
+        ×
+= render 'share_form'
+.span10#real_topic_info
+  %p
+    %h2= @topic.title
+  %p
+    = @topic.description
+  %br
+  -# Resources contained by topic
+  %ul{:id => "tab", :class => "nav nav-tabs"}
+    %li{:id => "real_topic_resource_all_tab"}
+      = link_to "All", @topic
+    %li{:id => "real_topic_resource_status_tab"}
+      = link_to "Status", show_topic_status_path(:id=>@topic.id)
+    %li{:id => "real_topic_resource_links_tab"}
+      = link_to "Links", show_topic_links_path(:id=>@topic.id)
+    %li{:id => "real_topic_resource_videos_tab"}
+      = link_to "Videos", show_topic_videos_path(:id=>@topic.id)
+    %li{:class => "active", :id => "real_topic_resource_books_tab"}
+      %a{:href => "#real_topic_resource_books", "data-toggle" => "tab"}
+        Books
+    %li{:id=>"real_topic_resource_mine_tab"}
+      = link_to "Mine", show_topic_mine_path(:id=>@topic.id)
+
+  %div{:id => "real_topic_content", :class => "tab-content"}
+    %div{:class => "tab-pane fade", :id => "real_topic_resource_all", :style => "display: none"}
+    %div{:class => "tab-pane fade", :id => "real_topic_resource_status", :style => "display: none"}
+    %div{:class => "tab-pane fade", :id => "real_topic_resource_links", :style => "display: none"}
+    %div{:class => "tab-pane fade", :id => "real_topic_resource_videos", :style => "display: none"}
+    %div{:class => "tab-pane fade in active span9", :id => "real_topic_resource_books", :style => "display: block"}
+      = render(:partial => "topic_resources_all", :collection => @resource_array_books)
+    %div{:class => "span5"}
+      %div{:class => "flickr_pagination"}
+        = will_paginate(@resource_array_books, :container => false)

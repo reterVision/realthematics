@@ -1,0 +1,2 @@
+module TopicScoreUsersHelper
+end

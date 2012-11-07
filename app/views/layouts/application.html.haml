@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %link{:rel=>"shortcut icon", :href=>"/images/favicon.ico"}
+    = render "shared/meta_application"
+    = render "shared/css_application"
+    = render "shared/js_application"
+
+    - if params[:controller] == 'signup' 
+      = render "wigets/launchrock_header"
+    
+  %body
+    = render "wigets/facebook_root"
+    = render "shared/menu"
+    -# Generate HTML here.
+    .container-fluid
+      .row-fluid
+        .span10
+          %br
+          = yield
+        .span2
+    = render "shared/footer"
+    = render "wigets/olark"
+    = render "shared/back_to_top"

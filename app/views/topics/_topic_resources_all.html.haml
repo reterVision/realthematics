@@ -1,0 +1,45 @@
+%p
+=link_to topic_resources_all.user.screen_name,topic_resources_all.user 
+="added a #{topic_resources_all.type_id} for"
+=link_to topic_resources_all.topic.title, topic_resources_all.topic
+="at"
+%i= topic_resources_all.created_at
+- if topic_resources_all.type_id == "status"
+  %div{:id => "container", :class=>"row-fluid"}
+    %p
+      = topic_resources_all.title
+    %br
+    %a{:href => "#{resource_score_path(:resource_id => topic_resources_all.id, :user_id => session[:user_id], :user_action => 2)}"}
+      %i.icon-arrow-up
+    ="#{topic_resources_all.up_count}"
+
+    %a{:href => "#{resource_score_path(:resource_id => topic_resources_all.id, :user_id => session[:user_id], :user_action => 3)}"}
+      %i.icon-arrow-down
+    ="#{topic_resources_all.down_count}"
+
+    %span{:class => "label"}
+      Added
+      = topic_resources_all.add_count             
+- else
+  %div{:id => "container", :class=>"row-fluid"}
+    %div{:class=>"span3"}
+      %img{:src=>"#{topic_resources_all.image_uri}", :align=>"top", :alt=>"", :height=>"120",  "onerror"=>"this.src='/images/realthematics.png'"}
+    %div{:class=>"span6"}
+      - if topic_resources_all.type_id == "book"
+        %b= topic_resources_all.title
+        %p= link_to "Amazon Link", topic_resources_all.uri, :target => "_blank"
+      - else
+        %b= link_to topic_resources_all.title, topic_resources_all.uri, :target => "_blank"
+        %p= topic_resources_all.description   
+      %a{:href => "#{resource_score_path(:resource_id => topic_resources_all.id, :user_id => session[:user_id], :user_action => 2)}"}
+        %i.icon-arrow-up
+      ="#{topic_resources_all.up_count}"
+
+      %a{:href => "#{resource_score_path(:resource_id => topic_resources_all.id, :user_id => session[:user_id], :user_action => 3)}"}
+        %i.icon-arrow-down
+      ="#{topic_resources_all.down_count}"
+
+      %span{:class => "label"}
+        Added
+        = topic_resources_all.add_count  
+%hr

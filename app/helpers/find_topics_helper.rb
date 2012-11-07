@@ -1,0 +1,2 @@
+module FindTopicsHelper
+end

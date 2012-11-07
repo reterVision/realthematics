@@ -1,0 +1,53 @@
+%p
+=link_to home_resources.user.screen_name, home_resources.user 
+="added a #{home_resources.type_id} for"
+=link_to home_resources.topic.title, home_resources.topic
+="at"
+%i= home_resources.created_at
+%p
+- if home_resources.type_id == "status"
+  %div{:class=>"row-fluid"}    
+    %p
+      = home_resources.title
+    %p
+      %br
+      %a{:href => "#{resource_score_path(:resource_id => home_resources.id, :user_id => session[:user_id], :user_action => 2)}"}
+        %i.icon-arrow-up
+      ="#{home_resources.up_count}"
+
+      %a{:href => "#{resource_score_path(:resource_id => home_resources.id, :user_id => session[:user_id], :user_action => 3)}"}
+        %i.icon-arrow-down
+      ="#{home_resources.down_count}"
+
+      %span{:class => "label"}
+        Added
+        = home_resources.add_count             
+- else
+  %div{:class=>"row-fluid"}
+    %div{:class =>"span3"}
+      %img{:src =>"#{home_resources.image_uri}", :align => "top", :alt => "", :height=>"120px", "onerror"=>"this.src='/images/realthematics.png'"}
+    %div{:class =>"span6"}
+      - if home_resources.type_id == "book"
+        %p
+          %b= home_resources.title
+        %p
+          = link_to "Amazon Link", home_resources.uri, :target => "_blank"
+      - else
+        %p
+          %b= link_to home_resources.title, home_resources.uri, :target => "_blank"
+      -#%textarea{:class=>"hover-edit-element"}= home_resources.description
+      = home_resources.description
+      %p
+        %br
+        %a{:href => "#{resource_score_path(:resource_id => home_resources.id, :user_id => session[:user_id], :user_action => 2)}"}
+          %i.icon-arrow-up
+        ="#{home_resources.up_count}"
+
+        %a{:href => "#{resource_score_path(:resource_id => home_resources.id, :user_id => session[:user_id], :user_action => 3)}"}
+          %i.icon-arrow-down
+        ="#{home_resources.down_count}"
+
+        %span{:class => "label"}
+          Added
+          = home_resources.add_count
+%hr

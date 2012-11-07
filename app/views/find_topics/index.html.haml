@@ -1,0 +1,35 @@
+%link{:rel => "stylesheet", :href => "/stylesheets/pagination.css"}
+:css
+	.button_to div {display: inline;}
+	.button_to {display: inline;}
+
+.notice_alert
+	- if notice
+		%p{:id=>"notice", :class=>"span5 alert alert-success"}
+			= notice
+			%a{:class=>"close", "data-dismiss"=>"alert"}
+				×
+= render 'form'
+.span10#search_results
+	-if (params[:keyword]=="" || params[:keyword]==nil)
+		%h2
+			%b Topics that you may interest in.
+		#recommend_topic If you want to check on a specific topic, use the search above.
+	-else
+		%h2
+			#recommend_topic Not the topic you want? Add new topic to Real Thematics.
+			%br
+			= form_tag :controller => "topics", :action => "create", :method => "post" do
+				= text_field_tag :keywordForAdd, params[:keyword], "style"=>"display:none"
+				%button{:class => "btn btn-large btn-primary"} 
+					Add 
+					%strong
+						#{params[:keyword]} 
+					to Real Thematics!
+.span10#whole_page
+	= render(:partial => "find_topics_list", :collection => @topics)
+	%hr
+	%div{:class => "span3"}
+		%div{:class => "flickr_pagination"}
+			= will_paginate(@topics)
+= render "wigets/joyride_find_topics"
